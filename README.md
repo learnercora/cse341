@@ -6,4 +6,5 @@ https://github.com/learnercora/cse341
 Render
 https://cse341-s8ph.onrender.com
 
-YT
+YouTube
+week1: https://youtu.be/ozs-mzvpnAQ
