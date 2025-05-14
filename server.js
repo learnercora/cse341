@@ -7,23 +7,27 @@ const contactsRoutes = require("./routes/contacts");
 
 const port = process.env.PORT || 8080;
 const app = express();
+
 const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('./swagger.json');
 
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
-app.get("/", (req, res) => {
-  res.send("Home");
-});
+// app.get("/", (req, res) => {
+//   res.send("Home");
+// });
 
 app
+  .use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument))
   .use(bodyParser.json())
   .use((req, res, next) => {
     res.setHeader("Access-Control-Allow-Origin", "*");
+    res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Z-key");
+    res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
     next();
   })
-  .use("/professional", professionalRoutes)
-  .use("/contacts", contactsRoutes);
+  // .use("/professional", professionalRoutes)
+  // .use("/contacts", contactsRoutes);
+  .use('/', require('./routes'));
 
 mongodb.initDb((err, mongodb) => {
   if (err) {
