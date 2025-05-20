@@ -1,20 +1,12 @@
 const express = require("express");
 const bodyParser = require("body-parser");
-const MongoClient = require("mongodb").MongoClient;
 const mongodb = require("./db/connect");
-const professionalRoutes = require("./routes/professional");
-const contactsRoutes = require("./routes/contacts");
 
 const port = process.env.PORT || 8080;
 const app = express();
 
 const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('./swagger.json');
-
-
-// app.get("/", (req, res) => {
-//   res.send("Home");
-// });
 
 app
   .use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument))
@@ -25,9 +17,12 @@ app
     res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
     next();
   })
-  // .use("/professional", professionalRoutes)
-  // .use("/contacts", contactsRoutes);
   .use('/', require('./routes'));
+
+
+process.on('uncaughtException', (err, origin) => {
+  console.log(process.stderr.fd, `Caught exception: ${err}\n` + `Exception origin: ${origin}`);
+});
 
 mongodb.initDb((err, mongodb) => {
   if (err) {
