@@ -1,5 +1,5 @@
-### get professional data
-GET http://localhost:8080/professional
+# ### get professional data
+# GET http://localhost:8080/professional
 
 ### get contact all data
 GET http://localhost:8080/contacts
@@ -13,10 +13,10 @@ POST http://localhost:8080/contacts
 Content-Type: application/json
 
 {
-  "firstName": "Li",
-  "lastName": "Petter",
-  "email": "lipetter@cse341.com",
-  "favoriteColor": "Blue",
+  "firstName": "Yeh",
+  "lastName": "Parry",
+  "email": "yehparry@cse341.com",
+  "favoriteColor": "red",
   "birthday": "1994-01-01"
 }
 
@@ -29,8 +29,8 @@ Content-Type: application/json
   "lastName": "Cora",
   "email": "lincora@cse341.com",
   "favoriteColor": "Orange",
-  "birthday": "1990-01-01"
+  "birthday": "1990-11-11"
 }
 
 ### delete a contact by ID
-DELETE http://localhost:8080/contacts/6823074f2c935a73fd7327cd
+DELETE http://localhost:8080/contacts/682d40a7e144ec96da26b23c
